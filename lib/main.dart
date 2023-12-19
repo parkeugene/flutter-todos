@@ -129,7 +129,7 @@ class _TodoListState extends State<TodoList> {
   Future<void> _displayDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: true, // user must tap button!
+      barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Add a todo'),
