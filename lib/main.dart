@@ -109,7 +109,7 @@ class _TodoListState extends State<TodoList> {
       body: Center(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          children: _todos.length==0 ? <Widget>[const Center(child: Text('No todos yet!'))] : _todos.map((Todo todo) {
+          children: _todos.isEmpty ? <Widget>[const Center(child: Text('No todos yet!'))] : _todos.map((Todo todo) {
             return TodoItem(
                 todo: todo,
                 onTodoChanged: _handleTodoChange,
