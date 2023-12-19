@@ -106,15 +106,17 @@ class _TodoListState extends State<TodoList> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        children: _todos.map((Todo todo) {
-          return TodoItem(
-            todo: todo,
-            onTodoChanged: _handleTodoChange,
-            removeTodo: _deleteTodo
-          );
-        }).toList(),
+      body: Center(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          children: _todos.length==0 ? <Widget>[const Center(child: Text('No todos yet!'))] : _todos.map((Todo todo) {
+            return TodoItem(
+                todo: todo,
+                onTodoChanged: _handleTodoChange,
+                removeTodo: _deleteTodo
+            );
+          }).toList(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _displayDialog(),
@@ -127,6 +129,7 @@ class _TodoListState extends State<TodoList> {
   Future<void> _displayDialog() async {
     return showDialog<void>(
       context: context,
+      barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Add a todo'),
